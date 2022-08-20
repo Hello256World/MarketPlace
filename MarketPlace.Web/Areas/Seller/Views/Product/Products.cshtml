@@ -1,0 +1,79 @@
+﻿@using MarketPlace.Application.Extensions
+@using MarketPlace.Application.Utils
+@model MarketPlace.DataLayer.DTOs.Product.FilterProductDTO
+@{
+    ViewData["Title"] = "لیست محصولات";
+}
+
+
+<div class="breadcrumbs_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb_content">
+                    <ul>
+                        <li><a href="/">خانه</a></li>
+                        <li>@ViewData["Title"]</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="main_content_area">
+    <div class="container">
+        <div class="account_dashboard">
+            <div class="row">
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <!-- Nav tabs -->
+                    @await Component.InvokeAsync("SellerSidebar")
+                </div>
+                <div class="col-sm-12 col-md-9 col-lg-9">
+                    <!-- Tab panes -->
+                    <div class="tab-content dashboard_content">
+                        @if(Model.Products != null && Model.Products.Any())
+                        {
+                            
+                        <div class="tab-pane fade active show" id="orders">
+                            <h3>@ViewData["Title"]</h3>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>تصویر محصول</th>
+                                            <th>عنوان محصول</th>
+                                            <th>وضعیت</th>
+                                            <th>جزئیات</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var product in Model.Products)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    <img src="@(PathExtensions.ProductImageThumb + product.ImageName)" width="75"/>
+                                                </td>
+                                                <td>@product.Title</td>
+                                                <td><span class="success">@product.ProductAcceptanceState.GetEnumName()</span></td>
+                                                <td><a asp-area="User" asp-controller="Ticket" asp-action="TicketDatail" asp-route-ticketId="@product.Id" class="view">جزئیات</a></td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        }else
+                        {
+                            <partial name="_NoItemFound"/>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+

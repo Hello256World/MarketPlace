@@ -1,0 +1,95 @@
+﻿@model MarketPlace.DataLayer.DTOs.Contacts.CreateContactUsDTO
+@using MarketPlace.DataLayer.Entities.Site
+@{
+    ViewData["Title"] = "ارتباط با ما";
+	var siteSetting = ViewBag.siteSetting as SiteSetting;
+}
+@section scripts{
+	<partial name="_ValidationScriptsPartial"/>
+	<partial name="_CaptchaScripts"/>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEn4c_T1rFt7ltf_oNavnjND8dDPm4KQs&language=fa"></script>
+	<script src="https://www.google.com/jsapi"></script>
+	<script src="/assets/js/map.js"></script>
+}
+
+<div class="breadcrumbs_area">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="breadcrumb_content">
+						<ul>
+							<li><a href="/">خانه</a></li>
+							<li>@ViewData["Title"]</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="contact_map mt-60">
+		<div class="map-area">
+			<div id="googleMap" style="position: relative; overflow: hidden;"><div style="height: 100%; width: 100%; position: absolute; top: 0px; left: 0px; background-color: rgb(229, 227, 223);"><div style="position: absolute; z-index: 0; left: 0px; top: 0px; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px;" class="gm-style"><div style="position: absolute; z-index: 0; left: 0px; top: 0px; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px; cursor: url(&quot;https://maps.gstatic.com/mapfiles/openhand_8_8.cur&quot;), default; touch-action: pan-x pan-y;" tabindex="0" aria-label="نقشه" aria-roledescription="نقشه" role="region"><div style="z-index: 1; position: absolute; left: 50%; top: 50%; width: 100%; transform: translate(0px);"><div style="position: absolute; left: 0px; top: 0px; z-index: 100; width: 100%;"><div style="position: absolute; left: 0px; top: 0px; z-index: 0;"><div style="position: absolute; z-index: 986; transform: matrix(1, 0, 0, 1, -108, -7);"><div style="position: absolute; left: 0px; top: 0px; width: 256px; height: 256px;"><div style="width: 256px; height: 256px;"></div></div><div style="position: absolute; left: -256px; top: 0px; width: 256px; height: 256px;"><div style="width: 256px; height: 256px;"></div></div><div style="position: absolute; left: -256px; top: -256px; width: 256px; height: 256px;"><div style="width: 256px; height: 256px;"></div></div><div style="position: absolute; left: 0px; top: -256px; width: 256px; height: 256px;"><div style="width: 256px; height: 256px;"></div></div><div style="position: absolute; left: 256px; top: -256px; width: 256px; height: 256px;"><div style="width: 256px; height: 256px;"></div></div><div style="position: absolute; left: 256px; top: 0px; width: 256px; height: 256px;"><div style="width: 256px; height: 256px;"></div></div><div style="position: absolute; left: -512px; top: 0px; width: 256px; height: 256px;"><div style="width: 256px; height: 256px;"></div></div><div style="position: absolute; left: -512px; top: -256px; width: 256px; height: 256px;"><div style="width: 256px; height: 256px;"></div></div><div style="position: absolute; left: 512px; top: -256px; width: 256px; height: 256px;"><div style="width: 256px; height: 256px;"></div></div><div style="position: absolute; left: 512px; top: 0px; width: 256px; height: 256px;"><div style="width: 256px; height: 256px;"></div></div></div></div></div><div style="position: absolute; left: 0px; top: 0px; z-index: 101; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 102; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 103; width: 100%;"><div style="width: 27px; height: 43px; overflow: hidden; position: absolute; left: -14px; top: -43px; z-index: 0;"><img style="position: absolute; left: 0px; top: 0px; width: 27px; height: 43px; user-select: none; border: 0px none; padding: 0px; margin: 0px; max-width: none;" alt="" src="https://maps.gstatic.com/mapfiles/api-3/images/spotlight-poi2_hdpi.png" draggable="false"></div><div style="position: absolute; left: 0px; top: 0px; z-index: -1;"><div style="position: absolute; z-index: 986; transform: matrix(1, 0, 0, 1, -108, -7);"><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 0px; top: 0px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: -256px; top: 0px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: -256px; top: -256px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 0px; top: -256px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 256px; top: -256px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 256px; top: 0px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: -512px; top: 0px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: -512px; top: -256px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 512px; top: -256px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 512px; top: 0px;"></div></div></div></div><div style="position: absolute; left: 0px; top: 0px; z-index: 0;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 0;"></div></div><div style="z-index: 3; position: absolute; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px; left: 0px; top: 0px; touch-action: pan-x pan-y;"><div style="z-index: 4; position: absolute; left: 50%; top: 50%; width: 100%; transform: translate(0px);"><div style="position: absolute; left: 0px; top: 0px; z-index: 104; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 105; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 106; width: 100%;"><span id="07888872-6975-4084-BE7A-DC0339522BEB" style="display: none;">برای ناوبری، کلیدهای پیکان را فشار دهید.</span><div style="width: 27px; height: 43px; overflow: hidden; position: absolute; left: -14px; top: -43px; z-index: 0;" tabindex="-1"><img style="width: 27px; height: 43px; user-select: none; border: 0px none; padding: 0px; margin: 0px; max-width: none;" alt="" src="https://maps.gstatic.com/mapfiles/transparent.png" draggable="false" usemap="#gmimap0"><map name="gmimap0" id="gmimap0"><area log="miw" coords="13.5,0,4,3.75,0,13.5,13.5,43,27,13.5,23,3.75" shape="poly" tabindex="-1" style="display: inline; position: absolute; left: 0px; top: 0px; cursor: pointer; touch-action: none;" title=""></map></div></div><div style="position: absolute; left: 0px; top: 0px; z-index: 107; width: 100%;"></div></div></div><div style="z-index: 4; position: absolute; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px; left: 0px; top: 0px; opacity: 0;" class="gm-style-moc"><p class="gm-style-mot"></p></div></div><iframe aria-hidden="true" tabindex="-1" style="z-index: -1; position: absolute; width: 100%; height: 100%; top: 0px; left: 0px; border: medium none;" frameborder="0"></iframe><div style="pointer-events: none; width: 100%; height: 100%; box-sizing: border-box; position: absolute; z-index: 1000002; opacity: 0; border: 2px solid rgb(26, 115, 232);"></div></div></div><div style="background-color: white; font-weight: 500; font-family: Roboto, sans-serif; padding: 15px 25px; box-sizing: border-box; top: 5px; border: 1px solid rgba(0, 0, 0, 0.12); border-radius: 5px; left: 50%; max-width: 375px; position: absolute; transform: translateX(-50%); width: calc(100% - 10px); z-index: 1;"><div><img alt="" src="https://maps.gstatic.com/mapfiles/api-3/images/google_gray.svg" style="padding: 0px; margin: 0px; border: 0px none; height: 17px; vertical-align: middle; width: 52px; user-select: none;" draggable="false"></div><div style="line-height: 20px; margin: 15px 0px;"><span style="color: rgba(0, 0, 0, 0.87); font-size: 14px;">‏‫این صفحه نمی‌تواند Google Maps را درست بارگیری کند.</span></div><table style="width: 100%;"><tr><td style="line-height: 16px; vertical-align: middle;"><a href="https://developers.google.com/maps/documentation/javascript/error-messages?utm_source=maps_js&amp;utm_medium=degraded&amp;utm_campaign=billing#api-key-and-billing-errors" target="_blank" rel="noopener" style="color: rgba(0, 0, 0, 0.54); font-size: 12px;">مالک این وب‌سایت شما هستید؟</a></td><td style="text-align: right;"><button class="dismissButton">تأیید</button></td></tr></table></div></div>
+		</div>
+	</div>
+
+	<div class="contact_area">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6 col-md-12">
+					<div class="contact_message content">
+					@if(siteSetting != null)
+					{
+						<h3>تماس با ما</h3>
+						<p>
+							@siteSetting.AboutUs
+						</p>
+						<ul>
+							<li><i class="fa fa-fw fa-map-marker"></i>@siteSetting.Address</li>
+							<li><i class="fa fa-fw fa-phone"></i>
+								@if(!String.IsNullOrEmpty(siteSetting.Mobile))
+								{
+									@foreach(var mobile in siteSetting.Mobile.Split("-"))
+									{
+										<span class="ltr-text">@mobile</span><text> , </text>
+									}
+								}
+								</li>
+							<li><i class="fa fa-fw fa-envelope-o"></i> <a href="#">@siteSetting.Email</a></li>
+						</ul>
+					}
+				</div>
+				</div>
+				<div class="col-lg-6 col-md-12">
+					<div class="contact_message form">
+						<h3>با ما در میان بگذارید</h3>
+						<form method="POST" asp-controller="Home" asp-action="ContactUs">
+							<partial name="_CaptchaInput"/>
+							<p>
+								<label> نام شما (الزامی)</label>
+								<input placeholder="نام *" type="text" asp-for="FullName">
+								<span class="text-danger" asp-validation-for="FullName"></span>
+							</p>
+							<p>
+								<label> ایمیل شما (الزامی)</label>
+								<input placeholder="* ایمیل" type="email" dir="ltr" asp-for="Email">
+								<span class="text-danger" asp-validation-for="Email"></span>
+							</p>
+							<p>
+								<label> موضوع</label>
+								<input placeholder="موضوع" type="text" asp-for="Subject">
+								<span class="text-danger" asp-validation-for="Subject"></span>
+							</p>
+							<div class="contact_textarea">
+								<label> پیام شما</label>
+								<textarea placeholder="پیام *" class="form-control2" asp-for="Text"></textarea>
+								<span class="text-danger" asp-validation-for="Text"></span>
+							</div>
+							<button type="submit"> ارسال</button>
+						</form>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>

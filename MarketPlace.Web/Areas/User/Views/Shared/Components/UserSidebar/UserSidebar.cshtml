@@ -1,0 +1,16 @@
+﻿@{
+    var path = Context.Request.Path;
+}
+<!-- Nav tabs -->
+<div class="dashboard_tab_button">
+    <ul role="tablist" class="nav flex-column dashboard-list">
+        <li><a asp-area="User" asp-controller="Home" asp-action="Dashboard" class="nav-link @(path == "/user"?"active":"")">داشبورد</a></li>
+        <li><a asp-area="User" asp-controller="Account" asp-action="ChangePassword" class="nav-link @(path == "/user/change-pass"?"active":"")">تغییر رمز عبور</a></li>
+        <li><a asp-area="User" asp-controller="Account" asp-action="EditProfile" class="nav-link @(path == "/user/edit-profile"?"active":"")">ویرایش اطلاعات</a></li>
+        <li><a asp-area="User" asp-controller="Ticket" asp-action="Index" class="nav-link @(path == "/user/tickets"?"active":"")">تیکت ها</a></li>
+        <li><a asp-area="User" asp-controller="Ticket" asp-action="AddTicket" class="nav-link @(path == "/user/add-ticket"?"active":"")">ثبت تیکت جدید</a></li>
+        <li><a asp-area="User" asp-controller="Seller" asp-action="SellerRequests" class="nav-link @(path == "/user/seller-requests"?"active":"")">درخواست های فروشندگی</a></li>
+        <li><a asp-area="User" asp-controller="Seller" asp-action="RequestSellerPanel" class="nav-link @(path == "/user/request-seller-panel"?"active":"")">ثبت درخواست پنل فروشندگی</a></li>
+        <li><a asp-area="" asp-controller="Account" asp-action="LogOut" class="nav-link">خروج</a></li>
+    </ul>
+</div>

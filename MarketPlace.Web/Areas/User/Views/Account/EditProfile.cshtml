@@ -1,0 +1,73 @@
+﻿@model MarketPlace.DataLayer.DTOs.Account.EditProfileDTO
+@using MarketPlace.Application.Utils
+@{
+    ViewData["Title"] = "ویرایش اطلاعات";
+}
+@section scripts{
+    	<partial name="_ValidationScriptsPartial"/>
+	<partial name="_CaptchaScripts"/>
+}
+
+<div class="breadcrumbs_area">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="breadcrumb_content">
+						<ul>
+							<li><a href="/">خانه</a></li>
+							<li>@ViewData["Title"]</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<section class="main_content_area">
+		<div class="container">
+			<div class="account_dashboard">
+				<div class="row">
+					<div class="col-sm-12 col-md-3 col-lg-3">
+						<!-- Nav tabs -->
+						@await Component.InvokeAsync("UserSidebar")
+					</div>
+					<div class="col-sm-12 col-md-9 col-lg-9">
+						<!-- Tab panes -->
+						<div class="tab-content dashboard_content">
+							<div class="tab-pane fade active show" id="account-details">
+								<h3>@ViewData["Title"]</h3>
+								<div class="login">
+									<div class="login_form_container">
+										<div class="account_login_form">
+											<form asp-area="User" asp-controller="Account" asp-action="EditProfile" enctype="multipart/form-data">
+												<partial name="_CaptchaInput"/>
+												<label>نام</label>
+												<input type="text" asp-for="FirstName">
+												<span asp-validation-for="FirstName" class="text-danger"></span>
+												<br />
+												<label>نام خانوادگی</label>
+												<input type="text" asp-for="LastName">
+												<span asp-validation-for="LastName" class="text-danger"></span>
+												<br />
+												<div class="col-md-3">
+													<img style="border-radius:20%; width:150px" src="@(!String.IsNullOrEmpty(Model.Avatar) ? PathExtensions.UserAvatarOrigin + Model.Avatar : PathExtensions.DefaultAvatar)"/>
+												</div>
+												<div class="col-md-9">
+													<input type="file" name="avatarImage"/>
+												</div>
+												<div class="save_button primary_btn default_button">
+													<button type="submit">ذخیره</button>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+

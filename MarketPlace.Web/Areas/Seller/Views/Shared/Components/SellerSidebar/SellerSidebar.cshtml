@@ -1,0 +1,13 @@
+﻿@{
+    var path = Context.Request.Path;
+}
+<!-- Nav tabs -->
+<div class="dashboard_tab_button">
+    <ul role="tablist" class="nav flex-column dashboard-list">
+        <li><a asp-area="Seller" asp-controller="Home" asp-action="Index" class="nav-link @(path == "/seller"?"active":"")">داشبورد</a></li>
+        <li><a asp-area="User" asp-controller="Ticket" asp-action="Index" class="nav-link @(path == "/user/tickets"?"active":"")">تیکت ها</a></li>
+        <li><a asp-area="User" asp-controller="Ticket" asp-action="AddTicket" class="nav-link @(path == "/user/add-ticket"?"active":"")">ثبت تیکت جدید</a></li>
+        <li><a asp-area="Seller" asp-controller="Product" asp-action="Products" class="nav-link @(path == "/seller/products"?"active":"")"> لیست محصولات </a></li>
+        <li><a asp-area="" asp-controller="Account" asp-action="LogOut" class="nav-link">خروج</a></li>
+    </ul>
+</div>
