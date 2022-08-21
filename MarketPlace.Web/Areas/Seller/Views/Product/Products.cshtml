@@ -56,7 +56,7 @@
                                                 </td>
                                                 <td>@product.Title</td>
                                                 <td><span class="success">@product.ProductAcceptanceState.GetEnumName()</span></td>
-                                                <td><a asp-area="User" asp-controller="Ticket" asp-action="TicketDatail" asp-route-ticketId="@product.Id" class="view">جزئیات</a></td>
+                                                <td><a asp-area="Seller" asp-controller="Product" asp-action="CreateProduct" class="view">جزئیات</a></td>
                                             </tr>
                                         }
                                     </tbody>

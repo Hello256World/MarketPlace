@@ -44,7 +44,7 @@ namespace MarketPlace.Web.Areas.Seller.Controllers
         }
 
         [HttpPost("create-product"), ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateProduct(CreateProductDTO product)
+        public async Task<IActionResult> CreateProduct(CreateProductDTO product,IFormFile productImage)
         {
             if (ModelState.IsValid)
             {
