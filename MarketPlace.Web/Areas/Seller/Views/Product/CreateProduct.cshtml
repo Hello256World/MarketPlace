@@ -1,6 +1,8 @@
-﻿@model MarketPlace.DataLayer.DTOs.Product.CreateProductDTO
+﻿@using MarketPlace.DataLayer.Entities.Products
+@model MarketPlace.DataLayer.DTOs.Product.CreateProductDTO
 @{
     ViewData["Title"] = "ثبت محصول";
+    var categories = ViewBag.category as List<ProductCategory>;
 }
 
 @section scripts{
@@ -55,9 +57,41 @@
                                             <textarea asp-for="Description" ckeditor="1"></textarea>
                                             <span asp-validation-for="Description" class="text-danger"></span>
                                             <br />
+                                            <label>
+                                                <input type="checkbox" asp-for="IsActive"/> فعال 
+                                            </label>
+                                            <br />
                                             <div class="col-md-9">
                                                 <input type="file" name="productImage" accept=".jpeg,.png" />
                                             </div>
+                                            <hr />
+                                             @if (categories != null && categories.Any())
+                                            {
+                                                @foreach (var category in categories.Where(s => s.ParentId == null))
+                                                {
+                                                    <ul>
+                                                        <li>
+                                                            <label>
+                                                                <input type="checkbox" name="@nameof(Model.SelectedCategories)" value="@category.Id" /> @category.Title
+                                                            </label>
+                                                            @if (categories.Any(s => s.ParentId == category.Id))
+                                                            {
+                                                                <div>
+
+                                                                    @foreach (var subCategory in categories.Where(s => s.ParentId == category.Id))
+                                                                    {
+                                                                        <label>
+                                                                            <input type="checkbox" name="@nameof(Model.SelectedCategories)" value="@subCategory.Id" /> @subCategory.Title
+                                                                        </label>
+                                                                    }
+                                                                </div>
+                                                            }
+                                                        </li>
+
+                                                    </ul>
+                                                    <hr />
+                                                }
+                                            }
                                             <div class="save_button primary_btn default_button">
                                                 <button type="submit">ثبت</button>
                                             </div>

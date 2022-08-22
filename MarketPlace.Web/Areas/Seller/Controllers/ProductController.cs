@@ -38,7 +38,7 @@ namespace MarketPlace.Web.Areas.Seller.Controllers
         [HttpGet("create-product")]
         public async Task<IActionResult> CreateProduct()
         {
-            ViewBag.productCategory = await _productService.GetAllProductCategory(null);
+            ViewBag.category = await _productService.GetActiveProductCategory();
 
             return View();
         }
@@ -50,7 +50,7 @@ namespace MarketPlace.Web.Areas.Seller.Controllers
             {
                 // todo : create product
             }
-            ViewBag.productCategory = await _productService.GetAllProductCategory(null);
+            ViewBag.category = await _productService.GetActiveProductCategory();
             return View(product);
         }
 

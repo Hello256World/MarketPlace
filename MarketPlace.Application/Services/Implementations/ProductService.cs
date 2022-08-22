@@ -1,8 +1,10 @@
-﻿using MarketPlace.Application.Services.Interfaces;
+﻿using MarketPlace.Application.Extensions;
+using MarketPlace.Application.Services.Interfaces;
 using MarketPlace.DataLayer.DTOs.Paging;
 using MarketPlace.DataLayer.DTOs.Product;
 using MarketPlace.DataLayer.Entities.Products;
 using MarketPlace.DataLayer.Repository;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 
 namespace MarketPlace.Application.Services.Implementations
@@ -75,17 +77,43 @@ namespace MarketPlace.Application.Services.Implementations
             return filter.SetPaging(pager).SetProducts(allEntities);
         }
 
+        public async Task<CreateProductResult> CreateProduct(CreateProductDTO create, IFormFile productImage, long sellerId)
+        {
+            // todo : check image and added to DB
+
+            // create product
+            var product = new Product
+            {
+                Title = create.Title.Sanitize(),
+                ShortDescription = create.ShortDescription.Sanitize(),
+                Description = create.Description.Sanitize(),
+                Price = create.Price,
+                IsActive = create.IsActive,
+                SellerId = sellerId,
+            };
+
+            //create product cateory
+
+            return CreateProductResult.Success;
+        }
+
         #endregion
 
         #region product categories
 
-        public async Task<List<ProductCategory>> GetAllProductCategory(long? parentId)
+        public async Task<List<ProductCategory>> GetAllProductCategoryByParentId(long? parentId)
         {
-            if (parentId != null || parentId != 0)
+            if (parentId != null)
             {
                 return await _productCategoryRepository.GetQuery().Where(x => x.IsActive && !x.IsDelete && x.ParentId == parentId).ToListAsync();
             }
 
+            return await _productCategoryRepository.GetQuery().Where(x => x.IsActive && !x.IsDelete && x.ParentId == null).ToListAsync();
+
+        }
+
+        public async Task<List<ProductCategory>> GetActiveProductCategory()
+        {
             return await _productCategoryRepository.GetQuery().Where(x => x.IsActive && !x.IsDelete).ToListAsync();
         }
 
