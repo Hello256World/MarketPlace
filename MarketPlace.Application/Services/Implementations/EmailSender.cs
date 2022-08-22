@@ -11,7 +11,7 @@ namespace MarketPlace.Application.Services.Implementations
         public async Task SendMail(string to, string code, string subject, string text)
         {
             var message = new MimeMessage();
-            message.From.Add(new MailboxAddress("سایت فروشگاه ساز", "daniel.6869@hotmail.com"));
+            message.From.Add(new MailboxAddress("سایت فروشگاه ساز", "EmailSender@hotmail.com"));
             message.To.Add(new MailboxAddress("کاربر", to));
             message.Subject = subject;
             message.Body = new TextPart(TextFormat.Plain)
@@ -22,7 +22,7 @@ namespace MarketPlace.Application.Services.Implementations
             using (var client = new SmtpClient())
             {
                 await client.ConnectAsync("smtp-mail.outlook.com", 587, SecureSocketOptions.StartTls);
-                await client.AuthenticateAsync("daniel.6869@hotmail.com", "milad76567");
+                await client.AuthenticateAsync("EmailSender@hotmail.com", "Password");
                 await client.SendAsync(message);
                 await client.DisconnectAsync(true);
             }
