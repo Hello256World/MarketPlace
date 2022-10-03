@@ -5,10 +5,6 @@
     var categories = ViewBag.category as List<ProductCategory>;
 }
 
-@section scripts{
-<partial name="_ValidationScriptsPartial" />
-}
-
 <div class="breadcrumbs_area">
     <div class="container">
         <div class="row">
@@ -72,20 +68,27 @@
                                                     <ul>
                                                         <li>
                                                             <label>
-                                                                <input type="checkbox" name="@nameof(Model.SelectedCategories)" value="@category.Id" /> @category.Title
+                                                                <input type="checkbox" name="@nameof(Model.SelectedCategories)" value="@category.Id" main_category_checkbox="@category.Id" /> @category.Title
                                                             </label>
-                                                            @if (categories.Any(s => s.ParentId == category.Id))
-                                                            {
-                                                                <div>
 
-                                                                    @foreach (var subCategory in categories.Where(s => s.ParentId == category.Id))
-                                                                    {
-                                                                        <label>
-                                                                            <input type="checkbox" name="@nameof(Model.SelectedCategories)" value="@subCategory.Id" /> @subCategory.Title
-                                                                        </label>
-                                                                    }
-                                                                </div>
-                                                            }
+                                                            <div id="sub_categories_@category.Id" style="display: none">
+
+                                                                @foreach (var subCategory in categories.Where(s => s.ParentId == category.Id))
+                                                                {
+                                                                    <label>
+                                                                        <input type="checkbox" name="@nameof(Model.SelectedCategories)" value="@subCategory.Id" main_category_checkbox="@subCategory.Id" parent-category-id="@category.Id" /> @subCategory.Title
+                                                                    </label>
+                                                                    <div id="sub_categories_@subCategory.Id" style="display: none">
+
+                                                                        @foreach (var secondSubCategory in categories.Where(s => s.ParentId == subCategory.Id))
+                                                                        {
+                                                                            <label>
+                                                                                <input type="checkbox" name="@nameof(Model.SelectedCategories)" value="@secondSubCategory.Id" parent-category-id="@subCategory.Id" /> @secondSubCategory.Title
+                                                                            </label>
+                                                                        }
+                                                                    </div>
+                                                                }
+                                                            </div>
                                                         </li>
 
                                                     </ul>
@@ -93,7 +96,7 @@
                                                 }
                                             }
                                             <div class="save_button primary_btn default_button">
-                                                <button type="submit">ثبت</button>
+                                                <button type="submit">افزودن</button>
                                             </div>
                                         </form>
                                     </div>
@@ -107,3 +110,19 @@
     </div>
 </section>
 
+@section scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        $("[main_category_checkbox]").on('change', function (e) {
+            var isChecked = $(this).is(':checked');
+            var selectedCategoryId = $(this).attr('main_category_checkbox');
+            console.log(selectedCategoryId);
+            if (isChecked) {
+                $('#sub_categories_' + selectedCategoryId).slideDown(300);
+            } else {
+                $('#sub_categories_' + selectedCategoryId).slideUp(300);
+                $('[parent-category-id="' + selectedCategoryId + '"]').prop('checked', false);
+            }
+        });
+    </script>
+}

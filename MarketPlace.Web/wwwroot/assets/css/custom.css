@@ -1,3 +1,7 @@
 ﻿.ck-content{
     height:300px;
 }
+
+.cursor{
+    cursor : pointer;
+}

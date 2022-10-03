@@ -59,7 +59,7 @@ namespace MarketPlace.Web.Areas.User.Controllers
         {
             filter.UserId = User.GetUserId();
             filter.State = FilterSellerState.All;
-            filter.TakeEntity = 5;
+            filter.TakeEntity = 1;
 
             var res = await _sellerService.FilterSeller(filter);
 

@@ -28,6 +28,12 @@
                     @await Component.InvokeAsync("UserSidebar")
                 </div>
                 <div class="col-sm-12 col-md-9 col-lg-9">
+                    <form asp-area="User" asp-controller="Seller" asp-action="SellerRequests" method="get" id="filter-form">
+                        <input type="hidden" asp-for="PageId"/>
+                        <input type="hidden" asp-for="Address"/>
+                        <input type="hidden" asp-for="Mobile"/>
+                        <input type="hidden" asp-for="StoreName"/>
+                    </form>
                     <!-- Tab panes -->
                     <div class="tab-content dashboard_content">
                         @if(Model.Sellers != null && Model.Sellers.Any())
@@ -61,6 +67,7 @@
                                 </table>
                             </div>
                         </div>
+                        <partial name="_PagingPartial" model="@(Model.GetBasePaging())"/>
                         }else
                         {
                             <partial name="_NoItemFound"/>

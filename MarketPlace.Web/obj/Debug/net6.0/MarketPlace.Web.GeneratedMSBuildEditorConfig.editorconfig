@@ -207,6 +207,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Ob0l0ZW1Gb3VuZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Project/MarketPlace/MarketPlace.Web/Views/Shared/_PagingPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9QYWdpbmdQYXJ0aWFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Project/MarketPlace/MarketPlace.Web/Views/Shared/_SiteMessages.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9TaXRlTWVzc2FnZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

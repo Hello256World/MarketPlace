@@ -28,6 +28,18 @@
                     <label>آدرس فروشگاه</label>
                     <input class="form-control" asp-for="Address">
                 </div>
+                @*<div class="radio">
+                    <label>
+                    <input type="radio" class="colored-blue" value="@FilterSellerState.All" name="@nameof(Model.State)" @(Model.State == FilterSellerState.All ? "checked":"")>
+                    <span class="text">همه</span>
+                    </label>
+                    </div>
+                    <div class="radio">
+                    <label>
+                    <input type="radio" class="colored-blue" value="@FilterSellerState.Accepted" name="@nameof(Model.State)" @(Model.State == FilterSellerState.Accepted ? "checked":"")>
+                    <span class="text">تایید شده</span>
+                    </label>
+                    </div>*@
                 @foreach (var item in Html.GetEnumSelectList<FilterSellerState>())
                 {
                     <div class="control-group">
